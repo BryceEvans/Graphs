@@ -45,17 +45,38 @@ class Graph:
             visited.add(node)
         ## for each fo the dequeued item's edges
             for edge in self.vertices[node]:
-                #if not visited
+                # 3 if not visited
                 if edge not in visited:
         ## put them in the queue
                     queue.enqueue(edge)
+        # print(visited)
 
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # make a stack
+        stack = Stack()
+        # make a visited set
+        visited = set()
+        # put starting vertex in the stack
+        stack.push(starting_vertex)
+        # while the stack isn't empty
+        while stack.size():
+        ## pop off the top of the stack, it is our current item
+            node = stack.pop()
+        ## mark it as visited
+            visited.add(node)
+        ## for each of our current item's edges
+            for edge in self.vertices[node]:
+                ### if not visited
+                if edge not in visited:
+        ### put them on the stack
+                    visited.add(edge)
+                    stack.push(edge)
+        # print(visited)
+
     def dft_recursive(self, starting_vertex):
         """
         Print each vertex in depth-first order
@@ -109,6 +130,7 @@ if __name__ == '__main__':
     '''
     print(graph.vertices)
 
+
     '''
     Valid DFT paths:
         1, 2, 3, 5, 4, 6, 7
@@ -134,6 +156,9 @@ if __name__ == '__main__':
         1, 2, 4, 3, 7, 5, 6
     '''
     graph.bft(1)
+
+    print(graph.bft(1))
+    print(graph.dft(1))
 
     '''
     Valid DFT recursive paths:
