@@ -45,8 +45,10 @@ class Graph:
             visited.add(node)
         ## for each fo the dequeued item's edges
             for edge in self.vertices[node]:
+                #if not visited
+                if edge not in visited:
         ## put them in the queue
-                queue.enqueue(edge)
+                    queue.enqueue(edge)
 
     def dft(self, starting_vertex):
         """
