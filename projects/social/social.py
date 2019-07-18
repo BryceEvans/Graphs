@@ -90,7 +90,7 @@ class SocialGraph:
         totalFriendships = avgFriendships * numUsers
         friendships_created = 0
         collisions = 0
-        
+
         while friendships_created < totalFriendships:
         # create friendships
             
@@ -159,6 +159,6 @@ if __name__ == '__main__':
     
     print('average length of social path: ', total_steps/len(connections))
 
-    sg.populateGraphLinear(10, 2)
+    # sg.populateGraphLinear(10, 2)
 
 
