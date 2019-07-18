@@ -75,6 +75,39 @@ class SocialGraph:
 
         # avgFriendships = totalFriendships / numUsers
         # avgFriendships * numusers = totalFriendships
+
+    # Stretch - Decrease runtime to linear rather than quadratic
+    def populateGraphLinear(self, numUsers, avgFriendships):
+        # Reset graph
+        self.lastID = 0
+        self.users = {}
+        self.friendships = {}
+
+        # Add users
+        for user in range(numUsers):
+            self.addUser(user)
+
+        totalFriendships = avgFriendships * numUsers
+        friendships_created = 0
+        collisions = 0
+        
+        while friendships_created < totalFriendships:
+        # create friendships
+            
+        # choose two random user ids
+            first_friend = random.randint(1, numUsers)
+            second_friend = random.randint(1, numUsers)
+        # try to make them friends
+            maybe_friendship = self.addFriendship(first_friend, second_friend)
+        # if that works, increment a friendship counter
+            if maybe_friendship == True:
+                friendships_created += 1
+        # if not increment a collision counter
+            else:
+                collisions += 1
+
+
+
     # @staticmethod
     def getAllSocialPaths(self, userID):
         """
@@ -118,3 +151,14 @@ if __name__ == '__main__':
     connections = sg.getAllSocialPaths(1)
     print('**********************************')
     print(connections)
+    print(len(connections) - 1)
+
+    total_steps = 0
+    for user_id in connections:
+        total_steps += len(connections[user_id])
+    
+    print('average length of social path: ', total_steps/len(connections))
+
+    sg.populateGraphLinear(10, 2)
+
+
